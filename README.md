@@ -1,5 +1,39 @@
-# FunFilter
-This Project is extension of my [**Facial_keypoint_detection**](https://github.com/udacity/P1_Facial_Keypoints) Project from udacity Computer Vision Nanodegree Program.
+# Face Filter
+This Project is extension of my [**Facial_keypoint_detection**](https://github.com/udacity/P1_Facial_Keypoints) Project from udacity Computer Vision Nanodegree Program.  
+This repo is for **only learning purposes** and I would like to discuss with you about any issues related to codes and other Image Processing or Deep Learning techniques which can be used to improve the performance.
 
 ## Overview
-  In this project I implented a Funfilter which currently add **Sunglass** and **Moustache** on faces.Funfilters are use in many places like Facebook,Instagram and many other social networking site. The Key objective here is to accurately place the filter (sunglass, hat or any funny things) on top of the user's face. For this purpose here I have used **Facial Keypoint Detection** using Deep Learning which can locate position of various keypoints of a human face.
+  In this project I implented a Funfilter which currently add **Sunglass** and **Moustache** on faces.FacialFilters are use in many places like Facebook,Instagram and many other social networking site. The Key objective here is to accurately place the filter (sunglass, hat or any funny things) on top of the user's face. For this purpose here I have used **Facial Keypoint Detection** using Deep Learning which can locate position of various keypoints of a human face.Here the model is detecting 68 Keypoints of face as shown below
+
+  <img src="./img/landmarks_numbered.jpg" alt="drawing" width="500" height="400"/>
+
+## Facial KeyPoint detection
+Here I have used 4 Convolution Layer+Pooling Layer with one resnet block (which increases the accuracy much effectively) following by three fully connected layers for predicting 138 points.  
+Dropout Layers is also used in between the convolution layer and fully connected layers to reduce the **overfitting** of the model on training data.  
+**Adam optimizer** is used here because it avoid local mimimum using momentum, therefore using it with a correct learning rate the model will converge mostly into a global minimum.  
+I have used the **SmoothL1 Loss** which give L1 loss for large error and MSE Loss for small error.  
+
+  <p style="text-align:center;"><img src="./img/s2.png" alt="image" title="real image" width="400" height="300"/></p>
+
+  
+## Overlay Facial-Filters
+  * Detect Faces in a frame using Opencv's HaarCascaad face detector  
+  * For each face preprocessed and resized it to feed into the model  
+  * Detect the keypoints in faces  
+  * Using the detected keypoints overlay the face-filters above the frame  
+  
+<img src="./img/s3.png" alt="image" width="400" height="300"/>
+<img src="./img/s4.png" alt="image" width="400" height="300"/>
+
+## Instruction to run
+  * To view the output video in browser, run the **main.py** file
+  * To view it from opencv gui run **camera.py**  
+  
+## Dependencies - 
+  * Opencv
+  * Pytorch
+  * Numpy
+  * Flask
+
+## Acknowledgement
+[Udacity Facial keypoint detection](https://github.com/udacity/P1_Facial_Keypoints)
